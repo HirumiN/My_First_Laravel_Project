@@ -59,7 +59,7 @@ class PostController extends Controller
             'author_id' => auth()->id()
         ]);
 
-        Mail::to($post->author)->send(new PostMail($post));
+        Mail::to($post->author)->queue(new PostMail($post));
 
         return redirect('/posts')->with('success', 'Post created successfully!');
     }
